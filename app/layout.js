@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Crodlin Halls",
   description: "Book premium halls for events like weddings, birthdays, and corporate meetings.",
