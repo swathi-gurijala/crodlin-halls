@@ -7,7 +7,7 @@ const hallsData = [
   {
     id: "1",
     name: "Wedding Palace",
-    image: "/images/hall1.jpg",
+    image: "https://images.pexels.com/photos/6130502/pexels-photo-6130502.jpeg?auto=compress&cs=tinysrgb&h=600", // Wedding Hall
     location: "Hyderabad",
     price: 1650,
     rating: "4.7",
@@ -15,7 +15,7 @@ const hallsData = [
   {
     id: "2",
     name: "Birthday Bash Venue",
-    image: "/images/birthday.jpg",
+    image: "https://images.pexels.com/photos/3171837/pexels-photo-3171837.jpeg?auto=compress&cs=tinysrgb&h=600", // Birthday Venue
     location: "Kukatpally",
     price: 1200,
     rating: "4.5",
@@ -23,11 +23,31 @@ const hallsData = [
   {
     id: "3",
     name: "Corporate Hall",
-    image: "/images/hall2.jpg",
+    image: "https://images.pexels.com/photos/5824558/pexels-photo-5824558.jpeg?auto=compress&cs=tinysrgb&h=600", // Corporate Hall
     location: "Madhapur",
     price: 2200,
     rating: "4.8",
   },
+
+  // 🔸 Optional Placeholder Example
+  {
+    id: "4",
+    name: "Luxury Banquet",
+    image: "https://via.placeholder.com/600x400?text=No+Image+Available", // Placeholder image
+    location: "Secunderabad",
+    price: 2000,
+    rating: "4.6",
+  },
+
+  // 🔸 Optional Blank Image (for testing)
+  {
+    id: "5",
+    name: "Upcoming Venue",
+    image: "", // Blank (will show broken img if not handled)
+    location: "Gachibowli",
+    price: 1800,
+    rating: "4.3",
+  }
 ];
 
 export default function Home() {
@@ -49,4 +69,3 @@ export default function Home() {
     </div>
   );
 }
-
