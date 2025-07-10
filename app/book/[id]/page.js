@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import app from "@/firebase";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { loadRazorpay } from "../../../razorpay";
 
 const halls = {
   "1": { name: "Wedding Palace", price: 1650 },
@@ -25,20 +24,18 @@ export default function BookPage({ params }) {
     });
   }, []);
 
-  const handlePayment = async () => {
+  const handleBooking = async () => {
     if (!user) return alert("Please login first!");
-    const res = await loadRazorpay();
-    const options = { key: "YOUR_RAZORPAY_KEY", amount: hall.price * 100, name: hall.name, handler: async function (resp) {
-      await addDoc(collection(firestore, "bookings"), {
-        hallId: id,
-        userId: user.uid,
-        paymentId: resp.razorpay_payment_id,
-        timestamp: new Date().toISOString(),
-      });
-      alert("Booking confirmed!");
-      router.push("/bookings");
-    }};
-    new window.Razorpay(options).open();
+
+    await addDoc(collection(firestore, "bookings"), {
+      hallId: id,
+      userId: user.uid,
+      paymentId: "NO_PAYMENT_YET",
+      timestamp: new Date().toISOString(),
+    });
+
+    alert("Booking confirmed! (No payment step yet)");
+    router.push("/bookings");
   };
 
   return (
@@ -46,11 +43,13 @@ export default function BookPage({ params }) {
       <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-4">Book {hall.name}</h2>
         <p className="mb-6">Price: ₹{hall.price}</p>
-        <button className="w-full py-3 bg-yellow-600 text-white rounded" onClick={handlePayment}>
-          Pay & Book Now
+        <button
+          className="w-full py-3 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
+          onClick={handleBooking}
+        >
+          Book Now (Payment Disabled)
         </button>
       </div>
     </div>
   );
 }
-
