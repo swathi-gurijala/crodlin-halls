@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import app from "../../../../firebase";
+import app from "@/firebase";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { loadRazorpay } from "../../../razorpay";
 
